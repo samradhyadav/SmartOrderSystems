@@ -1,2 +1,6 @@
 run = "npm install && nodemon server.js"
 language = "nodejs"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
