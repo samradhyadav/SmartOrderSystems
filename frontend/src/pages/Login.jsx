@@ -21,11 +21,11 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    try {
-      const res = await axios.post(
-        "${API_BASE_URL}/api/auth/login",
-        { email, password }
-      );
+      try {
+    const res = await axios.post(
+      `${API_BASE_URL}/api/auth/login`,   // FIXED
+      { email, password }
+    );
 
       // Save token & role
       localStorage.setItem("token", res.data.token);

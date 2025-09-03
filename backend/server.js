@@ -19,7 +19,8 @@ app.use(express.json());
 // ✅ CORS setup
 // ----------------------
 const allowedOrigins = [
-  "http://localhost:5174",          // frontend dev
+  "http://localhost:5174",
+  "https://smartordersystems.vercel.app",          // frontend dev
   process.env.FRONTEND_URL || ""    // deployed frontend
 ].filter(Boolean);
 
