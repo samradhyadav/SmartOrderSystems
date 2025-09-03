@@ -18,11 +18,9 @@ app.use(express.json());
 // ----------------------
 // ✅ CORS setup
 // ----------------------
-const allowedOrigins = [
-  "http://localhost:5174",
-  "https://smart-order-systems.vercel.app",          // frontend dev
-  process.env.FRONTEND_URL || ""    // deployed frontend
-].filter(Boolean);
+const allowedOrigins = process.env.FRONTEND_URLS
+  ? process.env.FRONTEND_URLS.split(",")
+  : [];
 
 if (process.env.NODE_ENV !== "production") {
   // Allow all origins in development

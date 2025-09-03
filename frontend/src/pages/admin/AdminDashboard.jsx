@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ArrowRightOnRectangleIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { API_BASE_URL } from "../config";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -18,8 +19,8 @@ const AdminDashboard = () => {
   const [sortOption, setSortOption] = useState("");
 
 
-  const BASE_URL = "/api/menu";
-  const ORDER_URL = "/api/orders";
+  const BASE_URL = `${API_BASE_URL}/api/menu`;
+  const ORDER_URL = `${API_BASE_URL}/api/orders`;
   const token = localStorage.getItem("token");
 
   const authAxios = axios.create({
