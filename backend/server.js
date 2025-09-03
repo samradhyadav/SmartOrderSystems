@@ -20,7 +20,7 @@ app.use(express.json());
 // ----------------------
 const allowedOrigins = [
   "http://localhost:5174",
-  "https://smartordersystems.vercel.app",          // frontend dev
+  "https://smart-order-systems.vercel.app",          // frontend dev
   process.env.FRONTEND_URL || ""    // deployed frontend
 ].filter(Boolean);
 
