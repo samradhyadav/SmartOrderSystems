@@ -12,27 +12,38 @@ connectDB();
 
 const app = express();
 
-//  CORS setup
-const allowedOrigins = [
-  "http://localhost:5174",          // frontend dev
-  process.env.FRONTEND_URL || ""    // deployed frontend (Netlify/Vercel)
-].filter(Boolean); // removes empty strings
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
-
+// Parse JSON
 app.use(express.json());
 
-// Routes
+// ----------------------
+// ✅ CORS setup
+// ----------------------
+const allowedOrigins = [
+  "http://localhost:5174",          // frontend dev
+  process.env.FRONTEND_URL || ""    // deployed frontend
+].filter(Boolean);
+
+if (process.env.NODE_ENV !== "production") {
+  // Allow all origins in development
+  app.use(cors());
+} else {
+  // Restrict origins in production
+  app.use(cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }));
+}
+
+// ----------------------
+// ✅ Routes
+// ----------------------
 app.use("/api/auth", authRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/orders", orderRoutes);
@@ -42,6 +53,9 @@ app.get("/", (req, res) => {
   res.send("Backend API is running 🚀");
 });
 
+// ----------------------
+// ✅ Server
+// ----------------------
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(` Backend running at http://localhost:${PORT}`);
