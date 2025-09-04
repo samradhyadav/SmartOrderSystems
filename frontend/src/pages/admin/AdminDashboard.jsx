@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ArrowRightOnRectangleIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL } from "../../config";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -18,12 +18,14 @@ const AdminDashboard = () => {
   const [filterStatus, setFilterStatus] = useState("");
   const [sortOption, setSortOption] = useState("");
 
-
+  // ✅ FIX: Use API_BASE_URL instead of relative paths
   const BASE_URL = `${API_BASE_URL}/api/menu`;
   const ORDER_URL = `${API_BASE_URL}/api/orders`;
+
   const token = localStorage.getItem("token");
 
   const authAxios = axios.create({
+    baseURL: API_BASE_URL, // ✅ ensures axios points to correct backend
     headers: { Authorization: `Bearer ${token}` }
   });
 
@@ -37,8 +39,8 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       try {
         const [orderRes, menuRes] = await Promise.all([
-          authAxios.get(ORDER_URL),
-          authAxios.get(BASE_URL)
+          authAxios.get("/api/orders"),
+          authAxios.get("/api/menu")
         ]);
         setOrders(orderRes.data);
         setMenu(menuRes.data);

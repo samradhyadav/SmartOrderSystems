@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../config";
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const CustomerDashboard = () => {
   const token = localStorage.getItem("token");
 
   const authAxios = axios.create({
+    baseURL: API_BASE_URL,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -25,7 +27,7 @@ const CustomerDashboard = () => {
     const fetchCustomer = async () => {
       if (!token) return;
       try {
-        const res = await axios.get(`/api/auth/me`, {
+        const res = await axios.get(`/api/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCustomerName(res.data.name || "Customer");
