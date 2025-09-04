@@ -24,32 +24,30 @@ const CustomerDashboard = () => {
 
   // Fetch customer info
   useEffect(() => {
-    const fetchCustomer = async () => {
-      if (!token) return;
-      try {
-        const res = await axios.get(`/api/me`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setCustomerName(res.data.name || "Customer");
-      } catch (err) {
-        console.error("Failed to fetch customer info", err);
-      }
-    };
-    fetchCustomer();
-  }, [token]);
+  const fetchCustomer = async () => {
+    if (!token) return;
+    try {
+      const res = await authAxios.get(`/api/me`);
+      setCustomerName(res.data.name || "Customer");
+    } catch (err) {
+      console.error("Failed to fetch customer info", err.response?.data || err.message);
+    }
+  };
+  fetchCustomer();
+}, [token]);
 
   // Fetch menu
   useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const res = await axios.get(`/api/menu`);
-        setMenu(res.data);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-    fetchMenu();
-  }, []);
+  const fetchMenu = async () => {
+    try {
+      const res = await authAxios.get(`/api/menu`);
+      setMenu(res.data);
+    } catch (err) {
+      console.error("Failed to fetch menu", err.response?.data || err.message);
+    }
+  };
+  fetchMenu();
+}, []);
 
   // Close cart when clicking outside
   useEffect(() => {

@@ -35,26 +35,33 @@ const AdminDashboard = () => {
     setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== id)), 3000);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [orderRes, menuRes] = await Promise.all([
-          authAxios.get("/api/orders"),
-          authAxios.get("/api/menu")
-        ]);
-        setOrders(orderRes.data);
-        setMenu(menuRes.data);
-      } catch (err) {
-        console.error("Error fetching data:", err.response?.data || err.message);
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [orderRes, menuRes] = await Promise.all([
+        authAxios.get(ORDER_URL),
+        authAxios.get(BASE_URL)
+      ]);
+      setOrders(orderRes.data);
+      setMenu(menuRes.data);
+    } catch (err) {
+      console.error("Error fetching data:", err.response?.data || err.message);
+      if (err.response?.status === 401) {
+        addToast("Session expired. Please log in again.", "error");
+        localStorage.clear();
+        navigate("/login");
+      } else {
         addToast("Failed to load data", "error");
-      } finally {
-        setLoading(false);
       }
-    };
-    fetchData();
-  }, []);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchData();
+}, []);
 
-  const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleLogout = () => {
     localStorage.clear();
