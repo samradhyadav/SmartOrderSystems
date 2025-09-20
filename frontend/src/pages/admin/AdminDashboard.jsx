@@ -90,7 +90,7 @@ const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.val
         addToast("Item updated successfully!", "success");
         setEditingId(null);
       } else {
-        await authAxios.post(${API_BASE_URL}, payload);
+        await authAxios.post('${API_BASE_URL}', payload);
         addToast("Item added successfully!", "success");
       }
 
