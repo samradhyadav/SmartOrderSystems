@@ -1,8 +1,7 @@
 
 # Smart Order Management System
 
-A full-stack **MERN application** that allows restaurants to manage menus, customer orders, and deliveries in real time.  
-This project supports role-based dashboards for **Admin** and **Customer**.  
+A full-stack **MERN application** that allows restaurants to manage menus, customer orders, and deliveries in real time. This project supports role-based dashboards for **Admin** and **Customer**.  
 
 🌐 **Live Demo**: [Smart Order Systems](https://smart-order-systems.vercel.app)  
 🔗 **Backend API**: [Render Deployment](https://smartordersystems.onrender.com)  
@@ -114,8 +113,8 @@ Make sure FRONTEND_URLS in backend .env includes both localhost and deployed fro
 
 - Analytics dashboard for Admin
 
-**Author**
-Built with ❤️ by Samradh Singh Yadav
+**Built with ❤️ by Samradh Singh Yadav**
+
 
 ## Links 🔗 
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://portfolio-samradh.vercel.app/)
