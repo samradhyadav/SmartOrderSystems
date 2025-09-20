@@ -86,17 +86,17 @@ const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.val
       }
 
       if (editingId) {
-        await authAxios.put(`${BASE_URL}/${editingId}`, payload);
+        await authAxios.put(`${API_BASE_URL}/${editingId}`, payload);
         addToast("Item updated successfully!", "success");
         setEditingId(null);
       } else {
-        await authAxios.post(BASE_URL, payload);
+        await authAxios.post(${API_BASE_URL}, payload);
         addToast("Item added successfully!", "success");
       }
 
       setForm({ name: "", description: "", price: "", category: "", image: "" });
       setModalOpen(false);
-      const updatedMenu = await authAxios.get(BASE_URL);
+      const updatedMenu = await authAxios.get(API_BASE_URL);
       setMenu(updatedMenu.data);
     } catch (err) {
       console.error(err.response?.data || err.message);
@@ -112,7 +112,7 @@ const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.val
 
  const confirmDelete = async () => {
     try {
-      await authAxios.delete(`${BASE_URL}/${deleteModal.itemId}`);
+      await authAxios.delete(`${API_BASE_URL}/${deleteModal.itemId}`);
       setMenu(menu.filter((item) => item._id !== deleteModal.itemId));
       addToast("Item deleted successfully!", "success");
     } catch (err) {
@@ -137,7 +137,7 @@ const handleFormChange = (e) => setForm({ ...form, [e.target.name]: e.target.val
 
   const toggleAvailability = async (item) => {
     try {
-      await authAxios.put(`${BASE_URL}/${item._id}`, { available: !item.available });
+      await authAxios.put(`${API_BASE_URL}/${item._id}`, { available: !item.available });
       setMenu(menu.map((m) => (m._id === item._id ? { ...m, available: !m.available } : m)));
       addToast(item.available ? "Marked Unavailable" : "Marked Available", "success");
     } catch (err) {
