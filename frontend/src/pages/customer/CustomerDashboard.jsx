@@ -27,7 +27,7 @@ const CustomerDashboard = () => {
   const fetchCustomer = async () => {
     if (!token) return;
     try {
-      const res = await authAxios.get(`/api/me`);
+      const res = await authAxios.get(`${API_BASE_URL}/api/me`);
       setCustomerName(res.data.name || "Customer");
     } catch (err) {
       console.error("Failed to fetch customer info", err.response?.data || err.message);
@@ -40,7 +40,7 @@ const CustomerDashboard = () => {
   useEffect(() => {
   const fetchMenu = async () => {
     try {
-      const res = await authAxios.get(`/api/menu`);
+      const res = await authAxios.get(`${API_BASE_URL}/api/menu`);
       setMenu(res.data);
     } catch (err) {
       console.error("Failed to fetch menu", err.response?.data || err.message);
@@ -152,7 +152,7 @@ const CustomerDashboard = () => {
 
       console.log("DEBUG: order payload →", payload);
 
-      await axios.post(`/api/orders`, payload, {
+      await axios.post(`${API_BASE_URL}/api/orders`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
