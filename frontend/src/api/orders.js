@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api/orders";
+const API_URL = "https://smartordersystems.onrender.com/api/orders";
 
 // Place a new order
 export const placeOrder = async (order) => {
