@@ -4,7 +4,6 @@
 A full-stack **MERN application** that allows restaurants to manage menus, customer orders, and deliveries in real time. This project supports role-based dashboards for **Admin** and **Customer**.  
 
 🌐 **Live Demo**: [Smart Order Systems](https://smart-order-systems.vercel.app)  
-🔗 **Backend API**: [Render Deployment](https://smartordersystems.onrender.com)  
 
 ---
 
