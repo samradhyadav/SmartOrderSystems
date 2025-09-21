@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api/menu";
+const API_URL = "https://smartordersystems.onrender.com/api/menu";
 
 export const fetchMenu = async () => {
   const res = await axios.get(API_URL);
