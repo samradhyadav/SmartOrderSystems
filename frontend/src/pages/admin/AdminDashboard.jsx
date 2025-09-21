@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ArrowRightOnRectangleIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { API_BASE_URL } from "../../config";
+import { API_BASE_URL } from "../../config.js";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
