@@ -23,6 +23,7 @@ const CustomerDashboard = () => {
   });
 
   // Fetch customer info
+  
   useEffect(() => {
   const fetchCustomer = async () => {
     if (!token) return;
